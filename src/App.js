@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import DashboardPage from "./pages/DashboardPage";
+import LoginPage from "./pages/LoginPage";
+import firebase from "./Firestore";
+
+export const AuthContext = React.createContext();
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(null);
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => setCurrentUser(user));
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider value={{ currentUser }}>
+      <Router>
+        <Route exact path="/">
+          {currentUser ? <Redirect to="/dashboard" /> : <Redirect to="login" />}
+        </Route>
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/dashboard" component={DashboardPage} />
+      </Router>
+    </AuthContext.Provider>
   );
 }
 
