@@ -33,3 +33,29 @@ code {
   background-image: url(https://i.ibb.co/JKpPK9H/Web-background.jpg);
   background-size: cover;
 }
+
+.full {
+  height: 100vh;
+}
+
+#components-layout-demo-responsive .logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.site-layout-sub-header-background {
+  background: #fff;
+}
+
+.site-layout-background {
+  background: #fff;
+  flex: 1 1 auto;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+}
+
+.content {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
