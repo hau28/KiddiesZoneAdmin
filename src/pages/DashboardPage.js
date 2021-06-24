@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { withRouter } from "react-router";
 import {
   Layout,
@@ -26,6 +26,7 @@ import { CollectionName } from "../utils/enum";
 import Iframe from "react-iframe";
 import { VideoManager } from "./VideoManager";
 import { PostManger } from "./PostManager";
+import { AuthContext } from "../App";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -39,6 +40,7 @@ const Statistics = () => {
 
 const scheme = "#1890ff";
 const DashboardPage = () => {
+  const { currentUser } = useContext(AuthContext);
   const [currentPage, setCurrentPage] = useState("1");
   const handleSelectPage = (e) => {
     setCurrentPage(e.key);
@@ -71,6 +73,15 @@ const DashboardPage = () => {
         return "Quản lý video";
     }
   };
+
+  const handleLogout = () => {
+    console.log("user", currentUser);
+    firebase
+      .auth()
+      .signOut()
+      .then(() => console.log("Signed out successfully"))
+      .catch((error) => console.log(error));
+  };
   return (
     <Layout style={{ height: "100vh" }}>
       <Sider
@@ -102,11 +113,16 @@ const DashboardPage = () => {
               >
                 Admin
               </p>
-              <p style={{ color: "white", marginBottom: 0 }}>Ngô Công Hậu</p>
+              <p style={{ color: "white", marginBottom: 0 }}>
+                {currentUser.displayName}
+              </p>
             </div>
           </Row>
           <div style={{ marginTop: 20, paddingRight: 10, paddingLeft: 10 }}>
             <Button
+              onClick={() => {
+                console.log("currentuser", currentUser.displayName);
+              }}
               block
               style={{
                 backgroundColor: scheme,
@@ -118,6 +134,7 @@ const DashboardPage = () => {
               Tùy chọn
             </Button>
             <Button
+              onClick={handleLogout}
               block
               style={{
                 backgroundColor: "#333333",

@@ -16,10 +16,16 @@ function App() {
     <AuthContext.Provider value={{ currentUser }}>
       <Router>
         <Route exact path="/">
-          {currentUser ? <Redirect to="/dashboard" /> : <Redirect to="login" />}
+          {currentUser ? (
+            <Redirect to="/dashboard" />
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
         <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/dashboard" component={DashboardPage} />
+        <Route exact path="/dashboard">
+          {currentUser ? <DashboardPage /> : <Redirect to="/login" />}
+        </Route>
       </Router>
     </AuthContext.Provider>
   );
