@@ -45,11 +45,18 @@ const LoginPage = ({ history }) => {
     <div
       className="center full d-flex align-items-center justify-content-center jungle"
       style={{
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "whitesmoke",
       }}
     >
+      <img
+        height="100"
+        src="https://i.ibb.co/3rf3j7N/Light-Logo.png"
+        alt="Kiddies Zone Logo"
+        style={{ marginBottom: 30 }}
+      />
       <div
         className="shadow"
         style={{

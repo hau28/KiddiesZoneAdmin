@@ -50,7 +50,7 @@ export const PostManger = () => {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <a className="link-danger">Xóa video</a>
+          <a className="link-danger">Xóa bài viết</a>
         </Space>
       ),
     },
