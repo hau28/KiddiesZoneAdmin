@@ -128,6 +128,7 @@ export const PostManger = () => {
           value={newUrl}
         />
         <Button
+          disabled={!newUrl}
           onClick={handleAdd}
           size="large"
           type="primary"

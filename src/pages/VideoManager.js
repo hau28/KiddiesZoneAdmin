@@ -132,6 +132,7 @@ export const VideoManager = () => {
           size="large"
         />
         <Button
+          disabled={!newUrl}
           onClick={handleAdd}
           size="large"
           type="primary"
