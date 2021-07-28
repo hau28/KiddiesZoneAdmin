@@ -1,2 +1,2 @@
 # Introduction
-An admin dashboard for KiddiesZone app.
+The admin dashboard for KiddiesZone app.
